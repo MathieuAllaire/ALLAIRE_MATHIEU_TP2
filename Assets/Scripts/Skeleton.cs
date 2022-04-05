@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-public class nightShade : MonoBehaviour
+public class Skeleton : MonoBehaviour
 {
     private NavMeshAgent agent;
 
