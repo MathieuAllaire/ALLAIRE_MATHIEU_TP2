@@ -29,8 +29,9 @@ Transform:
   m_Children:
   - {fileID: 4142522532307673959}
   - {fileID: 5722025414582574441}
+  - {fileID: 5348906598390205474}
   m_Father: {fileID: 6831485445342735150}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3445108222171337017
 GameObject:
@@ -57,12 +58,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3445108222171337017}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
-  m_Father: {fileID: 6831485445342735150}
-  m_RootOrder: 0
+  m_Father: {fileID: 4220262779083628716}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8776932199585554449
 MeshFilter:
@@ -141,7 +142,6 @@ Transform:
   m_LocalPosition: {x: -122.12, y: 129.53, z: -51.3}
   m_LocalScale: {x: 0.012, y: 0.012, z: 0.012}
   m_Children:
-  - {fileID: 5348906598390205474}
   - {fileID: 4220262779083628716}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -162,7 +162,7 @@ MonoBehaviour:
   range: 15
   enemyTag: Ennemie
   partToRotate: {fileID: 4142522532307673959}
-  partToRotate2: {fileID: 5722025414582574441}
+  fireRate: 1
 --- !u!1 &6908167059941947347
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class TurretGun : MonoBehaviour
 {
     private Transform target;
-    public float damage =10f;
+    public float damage = 1f;
     public float range = 15f;
     public string enemyTag = "Ennemie";
     public Transform partToRotate;
@@ -32,7 +32,7 @@ public class TurretGun : MonoBehaviour
 
         if (fireCountdown <= 0f)
         {
-            Shoot();
+            Shoot(dir);
             fireCountdown = 1f / fireRate;
         }
         fireCountdown -= Time.deltaTime;
@@ -64,17 +64,20 @@ public class TurretGun : MonoBehaviour
         }
     }
 
-    void Shoot()
+    void Shoot(Vector3 dir)
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit))
+        if (Physics.Raycast(transform.position, dir, out hit, range))
         {
+            
+            Debug.DrawRay(transform.position, dir, Color.red, 5.0f);
             Debug.Log(hit.transform.name);
 
             Warrock target = hit.transform.GetComponent<Warrock>();
+            
             if (target != null)
             {
-                Debug.Log("Frederick");
+                Debug.Log("Test hit");
                 target.Death(damage);
             }
         }
