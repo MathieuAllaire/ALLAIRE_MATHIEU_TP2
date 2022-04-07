@@ -29,6 +29,8 @@ public class Warrock : MonoBehaviour
     public void Death(float amount)
     {
         health -= amount;
+
+
         if (health <= 0f)
         {
             SetKinematic(false);
