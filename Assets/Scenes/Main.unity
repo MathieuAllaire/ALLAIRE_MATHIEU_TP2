@@ -2015,7 +2015,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 9
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -2058,15 +2058,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fcdcc1864a9ab34ea545477ec86958d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
-  WayPoints:
-  - {fileID: 1503985544}
-  - {fileID: 233469256}
-  Cur_WayPoints: 0
-  speed: 3
-  stop_distance: 2
-  PauseTimer: 1
-  cur_timer: 0
 --- !u!4 &1183124657 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a31dadb51775a9946bec0ce29caa28cf, type: 3}
