@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class TurretGun : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class TurretGun : MonoBehaviour
     public float range = 15f;
     public string enemyTag = "Ennemie";
     public Transform partToRotate;
+    public float fireRate = 1f;
+    private float fireCountdown = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +29,13 @@ public class TurretGun : MonoBehaviour
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = lookRotation.eulerAngles;
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+
+        if (fireCountdown <= 0f)
+        {
+            Shoot();
+            fireCountdown = 1f / fireRate;
+        }
+        fireCountdown -= Time.deltaTime;
     }
 
     void GetTarget()
@@ -54,13 +64,20 @@ public class TurretGun : MonoBehaviour
         }
     }
 
-    void Shoot(Collider target)
+    void Shoot()
     {
-        //RaycastHit hit;
-        //if (Physics.Raycast(transform.position, target, out hit))
-        //{S
-        //    Debug.Log(hit.tranform.name);
-        //}
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit))
+        {
+            Debug.Log(hit.transform.name);
+
+            Warrock target = hit.transform.GetComponent<Warrock>();
+            if (target != null)
+            {
+                Debug.Log("Frederick");
+                target.Death(damage);
+            }
+        }
     }
 
     void OnDrawGizmosSelected()

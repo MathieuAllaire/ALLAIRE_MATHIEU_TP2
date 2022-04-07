@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Warrock : MonoBehaviour
 {
     private NavMeshAgent agent;
-    private int HP = 6;
+    private float health = 6f;
     public Animator animator;
     // Start is called before the first frame update
     void Start()
@@ -25,9 +25,10 @@ public class Warrock : MonoBehaviour
 
     }
 
-    void Death()
+    public void Death(float amount)
     {
-        if (HP == 0)
+        health -= amount;
+        if (health == 0f)
         {
             animator.enabled = false;
             SetKinematic(false);
@@ -43,4 +44,5 @@ public class Warrock : MonoBehaviour
             rb.isKinematic = newValue;
         }
     }
+
 }
