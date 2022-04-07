@@ -4,9 +4,10 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class CubeColliderChateau : MonoBehaviour
 {
-    
+    public GuiManager manager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,5 +20,12 @@ public class GameManager : MonoBehaviour
         
     }
 
-    
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ennemie")
+        {
+            manager.hpint --;
+            Destroy(collision.gameObject);
+        }
+    }
 }
