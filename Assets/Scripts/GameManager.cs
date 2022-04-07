@@ -2,26 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public NavMeshAgent agent;
-    public bool isAgentBusy = false;
+    public Text HP;
+    public Text Gold;
+    private float tempsAvantVague = 30;
     // Start is called before the first frame update
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Si l'agent n'est pas occupé
-        if (!isAgentBusy)
+        if (HP.text = 0)
         {
-            //Je lui donne une destination
-           
+            
         }
     }
 }

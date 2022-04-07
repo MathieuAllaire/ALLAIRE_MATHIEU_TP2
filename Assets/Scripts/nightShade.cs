@@ -2,32 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-public class nightShade : MonoBehaviour
+
+public class NightShade : MonoBehaviour
 {
     private NavMeshAgent agent;
-
-    private bool isAgentBusy = false;
-
+    private int HP = 2;
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
+        SetKinematic(true);
+        animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+        Vector3 newDestination = new Vector3(16f, 0f, -52f);
+
+        agent.SetDestination(newDestination);
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+    }
 
-
-        if (!isAgentBusy)
+    void Death()
+    {
+        if (HP == 0)
         {
-            Vector3 newDestination = new Vector3(Random.Range(-12f, 8f), 1f, Random.Range(-12f, 12));
-
-            agent.SetDestination(newDestination);
-
-            isAgentBusy = true;
+            animator.enabled = false;
+            SetKinematic(false);
+            Destroy(gameObject, 5);
         }
+    }
 
+    void SetKinematic(bool newValue)
+    {
+        Rigidbody[] bodies = GetComponentsInChildren<Rigidbody>();
+        foreach (Rigidbody rb in bodies)
+        {
+            rb.isKinematic = newValue;
+        }
     }
 }

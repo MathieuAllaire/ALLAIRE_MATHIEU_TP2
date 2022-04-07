@@ -4,13 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class guiManager : MonoBehaviour
+public class GuiManager : MonoBehaviour
 {
     public Button btnPause;
     public Button btnResume;
     public static bool GameIsPaused = false;
     float currentTime;
     public Text currentTimeText;
+    
     // Start is called before the first frame update
     void Start()
     {
