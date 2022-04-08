@@ -85,10 +85,8 @@ public class WaveSpawner : MonoBehaviour
     {
         EnemyTotalInWave = GetAmtEnemyInWave(wave);
         EnemyLeftInWave = EnemyTotalInWave;
-        for (int i = 0; i < EnemyTotalInWave; i++)
-        {
-            StartCoroutine(SpawnEnemy());
-        }
+        StartCoroutine(SpawnEnemy());
+        
     }
 
     //Get the amount of enemy to spawn in a wave
@@ -112,11 +110,15 @@ public class WaveSpawner : MonoBehaviour
     //Spawn a random enemy
     IEnumerator SpawnEnemy()
     {
-        yield return new WaitForSeconds(TimeBetweenSpawn);
-        GameObject enemytoSpawnPrefab = enemiesPrefab[Random.Range(0, enemiesPrefab.Length)];
-        GameObject enemyToSpawn = Instantiate(enemytoSpawnPrefab, spawnPoint.transform.position, Quaternion.identity);
-        Animator animComponent = enemyToSpawn.GetComponent<Animator>();
-        animComponent.enabled = true;
+        for(int i = 0; i < EnemyTotalInWave; i++)
+        {
+            GameObject enemytoSpawnPrefab = enemiesPrefab[Random.Range(0, enemiesPrefab.Length)];
+            GameObject enemyToSpawn = Instantiate(enemytoSpawnPrefab, spawnPoint.transform.position, Quaternion.identity);
+            Animator animComponent = enemyToSpawn.GetComponent<Animator>();
+            animComponent.enabled = true;
+            yield return new WaitForSeconds(TimeBetweenSpawn);
+        }
+        
     }
 
     #endregion
