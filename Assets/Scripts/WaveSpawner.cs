@@ -1,73 +1,67 @@
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+
+[System.Serializable]
+public class WaveAction
+{
+    public string name;
+    public float delay;
+    public Transform prefab;
+    public int spawnCount;
+    public string message;
+}
+
+[System.Serializable]
+public class Wave
+{
+    public string name;
+    public List<WaveAction> actions;
+}
+
+
+
 public class WaveSpawner : MonoBehaviour
 {
-    [System.Serializable]
+    public float difficultyFactor = 0.9f;
+    public List<Wave> waves;
+    private Wave m_CurrentWave;
+    public Wave CurrentWave { get { return m_CurrentWave; } }
+    private float m_DelayFactor = 1.0f;
 
-    public class wave
+    IEnumerator SpawnLoop()
     {
-        public GameObject[] enemy;
-        public int count;
-        public float rate;
-        public float waveTimer;
-        public Transform SpawnPos;
-    }
-
-    public wave[] waves;
-
-    public float TimeBetweenWAves = 3f;
-
-    public bool spawn = true;
-
-    public bool wavespawn = true;
-
-    public int nextwave = 0;
-
-    void Awake()
-    {
-        if (spawn)
+        m_DelayFactor = 1.0f;
+        while (true)
         {
-            StartCoroutine(DoSpawn());
-        }
-    }
-
-    IEnumerator DoSpawn()
-    {
-        while (nextwave <= waves.Length)
-        {
-            if (wavespawn)
+            foreach (Wave W in waves)
             {
-                yield return new WaitForSeconds(TimeBetweenWAves);
-                for (int i = 0; i < waves[nextwave].enemy.Length; i++)
+                m_CurrentWave = W;
+                foreach (WaveAction A in W.actions)
                 {
-                    for (int j = 0; j < waves[nextwave].count; j++)
+                    if (A.delay > 0)
+                        yield return new WaitForSeconds(A.delay * m_DelayFactor);
+                    if (A.message != "")
                     {
-                        yield return new WaitForSeconds(waves[nextwave].rate);
-                        SpawnUnit(waves[nextwave].enemy[i], waves[nextwave]);
+                        // TODO: print ingame message
+                    }
+                    if (A.prefab != null && A.spawnCount > 0)
+                    {
+                        for (int i = 0; i < A.spawnCount; i++)
+                        {
+                            // TODO: instantiate A.prefab
+                        }
                     }
                 }
-                wavespawn = false;
+                yield return null;  // prevents crash if all delays are 0
             }
-            yield return new WaitForSeconds(waves[nextwave].waveTimer);
-
-            if (nextwave + 1 > waves.Length - 1)
-            {
-                Debug.Log("waves completed");
-                spawn = false;
-                yield break;
-            }
-
-            else
-            {
-                nextwave++;
-                wavespawn = true;
-            }
+            m_DelayFactor *= difficultyFactor;
+            yield return null;  // prevents crash if all delays are 0
         }
     }
-
-    void SpawnUnit(GameObject enemy, wave _wave)
+    void Start()
     {
-        Instantiate(enemy, _wave.SpawnPos.position, Quaternion.identity);
+        StartCoroutine(SpawnLoop());
     }
+
 }
