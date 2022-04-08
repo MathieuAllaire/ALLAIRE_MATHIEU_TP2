@@ -9,8 +9,10 @@ using UnityEngine.AI;
 /// </summary>
 public class Turret : MonoBehaviour
 {
-
     #region Getter/setters
+    //Get the animator of the turret
+    private Animator Anim { get; set; }
+
     //Target of the turret (the one we're currently shooting)
     private Transform Target { get; set; }
 
@@ -81,7 +83,7 @@ public class Turret : MonoBehaviour
 
     #region Monobehaviour
     // Start is called before the first frame update
-    virtual public void Start()
+    virtual public void Awake()
     {
         //Invoke the method GetTarget every .5 seconds (so the turret aims at the target)
         InvokeRepeating("GetTarget", 0f, 0.5f);
@@ -95,6 +97,10 @@ public class Turret : MonoBehaviour
         Range = 15f;
         //Set fire count down to 0 (so it dosnt have a cd on start)
         FireCountdown = 0f;
+        //Get the animator componenent of the turret
+        Anim = GetComponent<Animator>();
+
+
     }
 
     // Update is called once per frame
@@ -164,6 +170,7 @@ public class Turret : MonoBehaviour
             //If the enemy is not null, take damage
             if (enemy != null)
             {
+                Anim.SetTrigger("Shoot");
                 enemy.TakeDamage(Damage);
             }
         }

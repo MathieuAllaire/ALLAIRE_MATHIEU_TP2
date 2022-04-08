@@ -13,9 +13,9 @@ public class TurretGun : Turret
 
     #region Monobehaviour
     // Start is called before the first frame update
-    override public void Start()
+    override public void Awake()
     {
-        base.Start();
+        base.Awake();
         //Set damage to 3
         Damage = 3;
     }
