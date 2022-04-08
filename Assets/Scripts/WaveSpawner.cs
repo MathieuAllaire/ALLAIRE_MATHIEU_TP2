@@ -1,67 +1,127 @@
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
 
-[System.Serializable]
-public class WaveAction
-{
-    public string name;
-    public float delay;
-    public Transform prefab;
-    public int spawnCount;
-    public string message;
-}
-
-[System.Serializable]
-public class Wave
-{
-    public string name;
-    public List<WaveAction> actions;
-}
-
-
-
+/// <summary>
+/// @author Mathieu Allaire
+/// @desc Manages the wave of enemy spawning
+/// </summary>
 public class WaveSpawner : MonoBehaviour
 {
-    public float difficultyFactor = 0.9f;
-    public List<Wave> waves;
-    private Wave m_CurrentWave;
-    public Wave CurrentWave { get { return m_CurrentWave; } }
-    private float m_DelayFactor = 1.0f;
 
-    IEnumerator SpawnLoop()
+    #region Getter/Setter
+    //if we need to spawn the next wave or not
+    public bool NeedToSpawn { get; set; }
+    //The wave we're currently in
+    public int CurrentWave { get; set; }
+    //minimum amount of enemies in a wave
+    public const int MinimumEnemyInWave = 2;
+    //delay before starting the first wave
+    public const float DelayBeforeStarting = 30.0f;
+    //Current timer
+    public float Timer { get; set; }
+    //total enemy in the current wave
+    private int enemyTotalInWave;
+    public int EnemyTotalInWave
     {
-        m_DelayFactor = 1.0f;
-        while (true)
+        get { return enemyTotalInWave; }
+        set
         {
-            foreach (Wave W in waves)
+            if (value <= 0)
             {
-                m_CurrentWave = W;
-                foreach (WaveAction A in W.actions)
-                {
-                    if (A.delay > 0)
-                        yield return new WaitForSeconds(A.delay * m_DelayFactor);
-                    if (A.message != "")
-                    {
-                        // TODO: print ingame message
-                    }
-                    if (A.prefab != null && A.spawnCount > 0)
-                    {
-                        for (int i = 0; i < A.spawnCount; i++)
-                        {
-                            // TODO: instantiate A.prefab
-                        }
-                    }
-                }
-                yield return null;  // prevents crash if all delays are 0
+                enemyTotalInWave = MinimumEnemyInWave;
             }
-            m_DelayFactor *= difficultyFactor;
-            yield return null;  // prevents crash if all delays are 0
+            else
+            {
+                enemyTotalInWave = value;
+            }
         }
     }
+
+    //enemy left in the current wave
+    public int EnemyLeftInWave { get; set; }
+    //Time we wait between enemy spawning
+    public const float TimeBetweenSpawn = 1.0f;
+
+    //List of our enemy prefabs to spawn
+    [SerializeField]
+    private GameObject[] enemiesPrefab;
+
+    //Spawn point of enemies
+    [SerializeField]
+    private GameObject spawnPoint;
+
+    #endregion
+
+    #region Monobehaviour
+    // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(SpawnLoop());
+        NeedToSpawn = true;
+        Timer = DelayBeforeStarting;
+        CurrentWave = 1;
     }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //If timer is equals to 0 and need to spawn, spawn the next wave
+        if (Timer <= 0f && NeedToSpawn)
+        {
+            SpawnWave(CurrentWave);
+            NeedToSpawn = false;
+        }
+        else if(Timer >= 0f)
+        {
+            Timer -= Time.deltaTime;
+        }
+
+    }
+
+    #region Methods
+    //Spawn the current wave
+    public void SpawnWave(int wave)
+    {
+        EnemyTotalInWave = GetAmtEnemyInWave(wave);
+        EnemyLeftInWave = EnemyTotalInWave;
+        for (int i = 0; i < EnemyTotalInWave; i++)
+        {
+            StartCoroutine(SpawnEnemy());
+        }
+    }
+
+    //Get the amount of enemy to spawn in a wave
+    private int GetAmtEnemyInWave(int wave)
+    {
+        return MinimumEnemyInWave + (Random.Range(CurrentWave, CurrentWave + 2));
+    }
+
+    //Executes when an enemy dies
+    public void EnemyDie()
+    {
+        EnemyLeftInWave--;
+        if (EnemyLeftInWave <= 0)
+        {
+            CurrentWave++;
+            NeedToSpawn = true;
+            Timer = DelayBeforeStarting / 3f;
+        }
+    }
+
+    //Spawn a random enemy
+    IEnumerator SpawnEnemy()
+    {
+        yield return new WaitForSeconds(TimeBetweenSpawn);
+        GameObject enemytoSpawnPrefab = enemiesPrefab[Random.Range(0, enemiesPrefab.Length)];
+        GameObject enemyToSpawn = Instantiate(enemytoSpawnPrefab, spawnPoint.transform.position, Quaternion.identity);
+        Animator animComponent = enemyToSpawn.GetComponent<Animator>();
+        animComponent.enabled = true;
+    }
+
+    #endregion
+
+
+    #endregion
 
 }

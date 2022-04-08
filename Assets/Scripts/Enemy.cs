@@ -11,6 +11,9 @@ public class Enemy : MonoBehaviour
 {
 
     #region Getter/setters
+    //Handles the WaveSpawner
+    public WaveSpawner Spawner { get; set; }
+
     //Handles the UI
     public GuiManager Manager {get; set; }
 
@@ -54,6 +57,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     virtual public void Awake()
     {
+        Spawner = GameObject.Find("WaveSpawner").GetComponent<WaveSpawner>();
         Manager = GameObject.Find("guiManager").GetComponent<GuiManager>();
         IsDead = false;
         //Set the kinematics to true (so our enemy is able to stand, walk, etc.)
@@ -88,8 +92,10 @@ public class Enemy : MonoBehaviour
         //If the health is 0 or below, enemy die's
         if (Health <= 0f && !IsDead)
         {
+        
             Manager.countEnemy++;
             IsDead = true;
+            Spawner.EnemyDie();
             Die();
         }
     }

@@ -21,11 +21,13 @@ public class GuiManager : MonoBehaviour
     public int countEnemy;
     public Text textCountEnemy;
     public Text gameOver;
+    public WaveSpawner spawner;
+    public Text timeBeforeSpawn;
 
     // Start is called before the first frame update
     void Start()
     {
-        gold = 0;
+        gold = 25;
         currentTime = 0;
         btnPause.onClick.AddListener(btnPauseClick);
         btnResume.onClick.AddListener(btnResumeClick);
@@ -52,6 +54,11 @@ public class GuiManager : MonoBehaviour
         textGold.text = Convert.ToString(gold);
 
         textCountEnemy.text = Convert.ToString(countEnemy);
+
+        waveNumber.text = "Vague : " + Convert.ToString(spawner.CurrentWave);
+
+        TimeSpan countDown = TimeSpan.FromSeconds(spawner.Timer);
+        timeBeforeSpawn.text = countDown.ToString(@"mm\:ss\:ff");
 
         if (hpInt <= 0 && gameHasEnded == false)
         {
