@@ -88,7 +88,7 @@ public class Enemy : MonoBehaviour
         //If the health is 0 or below, enemy die's
         if (Health <= 0f && !IsDead)
         {
-            
+            Manager.countEnemy++;
             IsDead = true;
             Die();
         }

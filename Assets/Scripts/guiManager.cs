@@ -15,9 +15,12 @@ public class GuiManager : MonoBehaviour
     public Text hp;
     public Text textGold;
     public int gold;
-    public GameObject devantChateau;
+    public GameObject devantChateauCollider;
     private bool gameHasEnded = false;
     public Text waveNumber;
+    public int countEnemy;
+    public Text textCountEnemy;
+    public Text gameOver;
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +51,9 @@ public class GuiManager : MonoBehaviour
 
         textGold.text = Convert.ToString(gold);
 
-        if (hpInt <= 0)
+        textCountEnemy.text = Convert.ToString(countEnemy);
+
+        if (hpInt <= 0 && gameHasEnded == false)
         {
             EndGame();
         }
@@ -71,7 +76,9 @@ public class GuiManager : MonoBehaviour
     {
         gameHasEnded = true;
         Debug.Log("GAME OVER");
-        Application.Quit();
+        gameOver.enabled = true;
+        GameIsPaused = true;
+
     }
 
 }

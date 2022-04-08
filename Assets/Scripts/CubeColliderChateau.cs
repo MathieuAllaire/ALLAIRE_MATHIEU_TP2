@@ -20,12 +20,12 @@ public class CubeColliderChateau : MonoBehaviour
         
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collider)
     {
-        if (collision.gameObject.tag == "Ennemie")
+        if (collider.gameObject.tag == "Ennemie")
         {
             manager.hpInt --;
-            Destroy(collision.gameObject);
+            Destroy(collider.gameObject);
         }
     }
 }
