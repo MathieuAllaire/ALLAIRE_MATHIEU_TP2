@@ -18,6 +18,7 @@ public class NightShade : Enemy
         base.Awake();
         //Set night shade health
         Health = 20;
+        MaxHealth = 20;
     }
 
     // Update is called once per frame

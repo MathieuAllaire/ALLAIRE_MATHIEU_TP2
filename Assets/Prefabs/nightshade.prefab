@@ -436,7 +436,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.010328606, y: -0.5512255, z: 0.05884233}
+  m_ConnectedAnchor: {x: 0.010328338, y: -0.5512255, z: 0.058842577}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -785,6 +785,7 @@ Transform:
   m_Children:
   - {fileID: 1267714250901459109}
   - {fileID: 4061262198574843652}
+  - {fileID: 3503008013972881679}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -131.509, z: 0}
@@ -871,7 +872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2451bb899c93c34181b23119b318f05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 0}
+  healthBar: {fileID: 7758264496411733955}
 --- !u!1 &1935546803151798040
 GameObject:
   m_ObjectHideFlags: 0
@@ -1073,7 +1074,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0048779347, y: 0.34785056, z: -0.0050909044}
+  m_ConnectedAnchor: {x: 0.004877903, y: 0.34785056, z: -0.005090395}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -1183,7 +1184,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.29090855, y: 0.01790105, z: 0.0057119215}
+  m_ConnectedAnchor: {x: 0.2909083, y: 0.017901035, z: 0.0057121404}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -1384,7 +1385,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.16959675, y: 0.11413345, z: -0.058691017}
+  m_ConnectedAnchor: {x: 0.16959725, y: 0.11413345, z: -0.058691002}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -1556,7 +1557,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.010497206, y: -0.55122215, z: 0.05883621}
+  m_ConnectedAnchor: {x: -0.010496707, y: -0.55122215, z: 0.058836244}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -2190,7 +2191,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.12185694, y: -0.020908251, z: 0.00013210914}
+  m_ConnectedAnchor: {x: 0.12185718, y: -0.020908251, z: 0.0001323798}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -2299,7 +2300,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0020902108, y: 0.25822085, z: -0.04691275}
+  m_ConnectedAnchor: {x: 0.0020904539, y: 0.25822085, z: -0.04691248}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -2409,7 +2410,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.28440022, y: 0.0022334326, z: 0.005711336}
+  m_ConnectedAnchor: {x: -0.2844005, y: 0.0022334347, z: 0.0057120714}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -3102,3 +3103,108 @@ Transform:
   m_Father: {fileID: 4348182808346273737}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &3161280297239365590
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1292307453706688428}
+    m_Modifications:
+    - target: {fileID: 1438466988161684379, guid: 634d10e153060e049932d29ac8f5243e, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964185803967399641, guid: 634d10e153060e049932d29ac8f5243e, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964185803967399641, guid: 634d10e153060e049932d29ac8f5243e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964185803967399641, guid: 634d10e153060e049932d29ac8f5243e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964185803967399641, guid: 634d10e153060e049932d29ac8f5243e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.019
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964185803967399641, guid: 634d10e153060e049932d29ac8f5243e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964185803967399641, guid: 634d10e153060e049932d29ac8f5243e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.076
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964185803967399641, guid: 634d10e153060e049932d29ac8f5243e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964185803967399641, guid: 634d10e153060e049932d29ac8f5243e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964185803967399641, guid: 634d10e153060e049932d29ac8f5243e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964185803967399641, guid: 634d10e153060e049932d29ac8f5243e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964185803967399641, guid: 634d10e153060e049932d29ac8f5243e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964185803967399641, guid: 634d10e153060e049932d29ac8f5243e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964185803967399641, guid: 634d10e153060e049932d29ac8f5243e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3656555106928743727, guid: 634d10e153060e049932d29ac8f5243e, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4327388432128983247, guid: 634d10e153060e049932d29ac8f5243e, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6210591036299493511, guid: 634d10e153060e049932d29ac8f5243e, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082209498536134984, guid: 634d10e153060e049932d29ac8f5243e, type: 3}
+      propertyPath: m_Name
+      value: HealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082209498536134984, guid: 634d10e153060e049932d29ac8f5243e, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082209498536134984, guid: 634d10e153060e049932d29ac8f5243e, type: 3}
+      propertyPath: m_TagString
+      value: HealthBar
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 634d10e153060e049932d29ac8f5243e, type: 3}
+--- !u!4 &3503008013972881679 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1964185803967399641, guid: 634d10e153060e049932d29ac8f5243e, type: 3}
+  m_PrefabInstance: {fileID: 3161280297239365590}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7758264496411733955 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4644895505334249493, guid: 634d10e153060e049932d29ac8f5243e, type: 3}
+  m_PrefabInstance: {fileID: 3161280297239365590}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f3b54e9f0ec24642b86ab706d3bc043, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -26,6 +26,7 @@ public class Warrock : Enemy
         IsClone = false;
         //Set warrock health
         Health = 30;
+        MaxHealth = 30;
     }
 
     // Update is called once per frame

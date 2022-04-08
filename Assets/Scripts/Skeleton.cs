@@ -17,6 +17,7 @@ public class Skeleton : Enemy
         base.Awake();
         //Set skeleton health
         Health = 10;
+        MaxHealth = 10;
     }
 
     // Update is called once per frame

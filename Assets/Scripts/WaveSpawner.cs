@@ -18,7 +18,7 @@ public class WaveSpawner : MonoBehaviour
     //minimum amount of enemies in a wave
     public const int MinimumEnemyInWave = 2;
     //delay before starting the first wave
-    public const float DelayBeforeStarting = 30.0f;
+    public const float DelayBeforeStarting = 3.0f;
     //Current timer
     public float Timer { get; set; }
     //total enemy in the current wave

@@ -11,6 +11,9 @@ public class Enemy : MonoBehaviour
 {
 
     #region Getter/setters
+    [SerializeField]
+    private HealthBar healthBar;
+
     //Handles the WaveSpawner
     public WaveSpawner Spawner { get; set; }
 
@@ -47,6 +50,25 @@ public class Enemy : MonoBehaviour
             }
         } 
     }
+    //Maximum health
+    private int maxHealth;
+    public int MaxHealth
+    {
+        get { return maxHealth; }
+        set
+        {
+            if (value > 0)
+            {
+                maxHealth = value;
+            }
+            else
+            {
+                //If were trying to set health below 0, default to 0
+                maxHealth = 0;
+            }
+        }
+    }
+
 
     //Animator of the enemy (walking animation, etc.)
     public Animator Anim { get; private set; }
@@ -57,6 +79,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     virtual public void Awake()
     {
+        healthBar.SetSize(1f);
         Spawner = GameObject.Find("WaveSpawner").GetComponent<WaveSpawner>();
         Manager = GameObject.Find("guiManager").GetComponent<GuiManager>();
         IsDead = false;
@@ -68,6 +91,7 @@ public class Enemy : MonoBehaviour
         Agent = GetComponent<NavMeshAgent>();
         //Set default enemy health to 3
         Health = 3;
+        MaxHealth = 3;
         //Set default death timer to 2 seconds
         DeathTimer = 2f;
         //Set our enemy destination
@@ -89,6 +113,8 @@ public class Enemy : MonoBehaviour
     {
         //Make sure our value is positive so we don't give hp to our enemy
         Health -= Mathf.Abs(amount);
+        //Sets the hp bar
+        healthBar.SetSize((float)Health / MaxHealth);
         //If the health is 0 or below, enemy die's
         if (Health <= 0f && !IsDead)
         {
