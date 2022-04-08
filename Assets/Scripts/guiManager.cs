@@ -14,13 +14,13 @@ public class GuiManager : MonoBehaviour
     public int hpint = 5;
     public Text hp;
     public Text gold;
-    private float tempsAvantVague = 30;
-    public GameObject devantChateau; 
+    public GameObject devantChateau;
+    private bool gameHasEnded = false;
+    public Text waveNumber;
 
     // Start is called before the first frame update
     void Start()
     {
-        
         currentTime = 0;
         btnPause.onClick.AddListener(btnPauseClick);
         btnResume.onClick.AddListener(btnResumeClick);
@@ -44,6 +44,11 @@ public class GuiManager : MonoBehaviour
         currentTimeText.text = time.ToString(@"mm\:ss\:ff");
         hp.text = Convert.ToString(hpint);
 
+        if (hpint <= 0)
+        {
+            EndGame();
+        }
+
     }
 
     void btnPauseClick()
@@ -57,4 +62,12 @@ public class GuiManager : MonoBehaviour
         //Reprends le jeu
         GameIsPaused = false ;
     }
+    
+    void EndGame()
+    {
+        gameHasEnded = true;
+        Debug.Log("GAME OVER");
+        Application.Quit();
+    }
+
 }

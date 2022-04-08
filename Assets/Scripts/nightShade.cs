@@ -3,45 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NightShade : MonoBehaviour
+/// <summary>
+/// @author Mathieu Allaire
+/// @desc The night shade enemy that inherits from enemy
+/// </summary>
+public class Warrock : Enemy
 {
-    private NavMeshAgent agent;
-    private int HP = 2;
-    public Animator animator;
 
+    #region Monobehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetKinematic(true);
-        animator = GetComponent<Animator>();
-        agent = GetComponent<NavMeshAgent>();
-        Vector3 newDestination = new Vector3(16f, 0f, -52f);
-
-        agent.SetDestination(newDestination);
+        base.Start();
+        //Set night shade health
+        Health = 20;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    void Death()
-    {
-        if (HP == 0)
-        {
-            animator.enabled = false;
-            SetKinematic(false);
-            Destroy(gameObject, 5);
-        }
-    }
+    #endregion
 
-    void SetKinematic(bool newValue)
-    {
-        Rigidbody[] bodies = GetComponentsInChildren<Rigidbody>();
-        foreach (Rigidbody rb in bodies)
-        {
-            rb.isKinematic = newValue;
-        }
-    }
 }

@@ -2,29 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 /// <summary>
 /// @author Mathieu Allaire
-/// @desc The warrock enemy that inherits from enemy
+/// @desc Handles the ice turret
 /// </summary>
-public class Warrock : Enemy
+public class TurretIce : Turret
 {
 
-    #region MonoBehaviour
+    #region Monobehaviour
     // Start is called before the first frame update
     void Start()
     {
         base.Start();
-        //Set warrock health
-        Health = 10;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        //Set damage to 5
+        Damage = 5;
     }
 
     #endregion
-
 }

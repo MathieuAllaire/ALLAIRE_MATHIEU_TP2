@@ -2,29 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 /// <summary>
 /// @author Mathieu Allaire
-/// @desc The warrock enemy that inherits from enemy
+/// @desc Handles the bomber turret
 /// </summary>
-public class Warrock : Enemy
+public class TurretBomber : Turret
 {
 
-    #region MonoBehaviour
+    #region Monobehaviour
     // Start is called before the first frame update
     void Start()
     {
         base.Start();
-        //Set warrock health
-        Health = 10;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        //Set damage to 6
+        Damage = 6;
     }
 
     #endregion
-
 }
