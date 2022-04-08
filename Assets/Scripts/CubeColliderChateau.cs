@@ -24,7 +24,7 @@ public class CubeColliderChateau : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ennemie")
         {
-            manager.hpint --;
+            manager.hpInt --;
             Destroy(collision.gameObject);
         }
     }

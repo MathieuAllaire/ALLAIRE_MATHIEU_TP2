@@ -13,7 +13,7 @@ public class TurretIce : Turret
 
     #region Monobehaviour
     // Start is called before the first frame update
-    void Start()
+    override public void Start()
     {
         base.Start();
         //Set damage to 5

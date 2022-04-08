@@ -11,6 +11,12 @@ public class Enemy : MonoBehaviour
 {
 
     #region Getter/setters
+    //Handles the UI
+    public GuiManager Manager {get; set; }
+
+    //Checks if the enemy is alive or dead
+    public bool IsDead { get; set; }
+
     //Agent that lets the enemy follow the path
     public NavMeshAgent Agent { get; private set; }
 
@@ -46,8 +52,10 @@ public class Enemy : MonoBehaviour
 
     #region MonoBehaviour
     // Start is called before the first frame update
-    void Start()
+    virtual public void Awake()
     {
+        Manager = GameObject.Find("guiManager").GetComponent<GuiManager>();
+        IsDead = false;
         //Set the kinematics to true (so our enemy is able to stand, walk, etc.)
         SetKinematic(true);
         //Get our animator component
@@ -64,7 +72,7 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    virtual public void Update()
     {
 
     }
@@ -72,21 +80,22 @@ public class Enemy : MonoBehaviour
     #endregion
 
     #region Methods
-    //Handles the death of our enemy
+    //Handle the damage of our enemy
     public void TakeDamage(int amount)
     {
         //Make sure our value is positive so we don't give hp to our enemy
-        Health -= Math.abs(amount);
-
+        Health -= Mathf.Abs(amount);
         //If the health is 0 or below, enemy die's
-        if (Health <= 0f)
+        if (Health <= 0f && !IsDead)
         {
+            
+            IsDead = true;
             Die();
         }
     }
 
     //Handles the death of our enemy
-    private void Die()
+    virtual public void Die()
     {
         //Set kinematics to false so our enemy starts to ragdoll to death
         SetKinematic(false);

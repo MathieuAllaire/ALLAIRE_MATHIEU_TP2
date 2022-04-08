@@ -7,24 +7,30 @@ using UnityEngine.AI;
 /// @author Mathieu Allaire
 /// @desc The skeleton enemy that inherits from enemy
 /// </summary>
-public class Warrock : Enemy
+public class Skeleton : Enemy
 {
 
     #region Monobehaviour
     // Start is called before the first frame update
-    void Start()
+    override public void Awake()
     {
-        base.Start();
+        base.Awake();
         //Set skeleton health
-        Health = 15;
+        Health = 10;
     }
 
     // Update is called once per frame
-    void Update()
+    override public void Update()
     {
 
     }
+   
 
     #endregion
+    public override void Die()
+    {
+        Manager.gold += 1;
+        base.Die();
+    }
 
 }

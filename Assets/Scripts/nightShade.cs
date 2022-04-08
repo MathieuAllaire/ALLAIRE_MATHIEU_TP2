@@ -7,24 +7,31 @@ using UnityEngine.AI;
 /// @author Mathieu Allaire
 /// @desc The night shade enemy that inherits from enemy
 /// </summary>
-public class Warrock : Enemy
+public class NightShade : Enemy
 {
+    
 
     #region Monobehaviour
     // Start is called before the first frame update
-    void Start()
+    override public void Awake()
     {
-        base.Start();
+        base.Awake();
         //Set night shade health
         Health = 20;
     }
 
     // Update is called once per frame
-    void Update()
+    override public void Update()
     {
 
     }
 
-    #endregion
 
+
+    #endregion
+    public override void Die()
+    {
+        Manager.gold += 2;
+        base.Die();
+    }
 }

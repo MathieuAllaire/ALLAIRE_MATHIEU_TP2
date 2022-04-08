@@ -76,12 +76,12 @@ public class Turret : MonoBehaviour
     public float FireCountdown { get; set; }
 
     //Model to rotate
-    public Transform ModelToRotate { get; set; }
+    public Transform modelToRotate;
     #endregion
 
     #region Monobehaviour
     // Start is called before the first frame update
-    void Start()
+    virtual public void Start()
     {
         //Invoke the method GetTarget every .5 seconds (so the turret aims at the target)
         InvokeRepeating("GetTarget", 0f, 0.5f);
@@ -98,17 +98,17 @@ public class Turret : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    virtual public void Update()
     {
         //If the target is null, skip
         if (Target == null)
             return;
 
         //Turret aim to the target
-        Vector3 dir = target.position - transform.position;
+        Vector3 dir = Target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = lookRotation.eulerAngles;
-        ModelToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+        modelToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 
         //If the turret count down is 0 or below, shoot
         if (FireCountdown <= 0f)
